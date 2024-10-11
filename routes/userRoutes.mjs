@@ -38,4 +38,26 @@ router.route('/')
     } else {next(error(400,'Insufficient Data'))} //if userfields incomplete
 })
 
+//@route: api/users/:userId
+//@desc: GET one user / PATCH details for one user / DELETE user
+router.route('/:userid')
+.get ((req,res) => {
+    let user = users.find((user)=>user.userId==req.params.userid)
+    const links = [
+        {
+        href: "/api/users/req.params.userId",
+        rel: "update user details",
+        type: "PATCH"
+        },
+        {
+        href: "/api/users/req.params.userId",
+        rel: ":delete user",
+        type: "DELETE"
+        }
+    ]
+    if (user){
+        res.json({user,links});
+    } else {next(error(404,'User does not exist'))}
+})
+
 export default router;
