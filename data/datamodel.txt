@@ -1,15 +1,114 @@
 GET /
+links: [
+    {
+    href: "/api",
+    rel: "api",
+    type: "GET"
+    }
+]
     GET /api
+    links: [
+    {
+    href: "/api/users",
+    rel: "users",
+    type: "GET"
+    },
+    {
+    href: "/api/users",
+    rel: "users",
+    type: "POST"
+    },
+    {
+    href: "/api/projects",
+    rel: "projects",
+    type: "GET"
+    },
+    {
+    href: "/api/projects",
+    rel: "projects",
+    type: "PATCH"
+    },
+    {
+    href: "/api/projects",
+    rel: "projects",
+    type: "DELETE"
+    },
+    {
+    href: "/api/projcategories",
+    rel: "projcategories",
+    type: "GET"
+    }
+
+]
         GET /api/users //get all users
+        const links = [
+        {
+          href: "/api/users/:userId",
+          rel: ":userId",
+          type: "GET"
+        },
+        {
+          href: "/api/users/:userId",
+          rel: ":userId",
+          type: "POST"
+        }
+      ]
         POST /api/users //create new user (on signup)
-            GET /api/users/:userid //get user details
+            GET /api/users/:userId //get user details
+                const links = [
+                    {
+                    href: "/api/users/req.params.userId",
+                    rel: ":userId",
+                    type: "PATCH"
+                    },
+                    {
+                    href: "/api/users/req.params.userId",
+                    rel: ":userId",
+                    type: "DELETE"
+                    }
+                ]
             PATCH /api/users/:userid //change user details
             DELETE /api/users/:userid //delete user
                 GET /api/users/:userid/projects //get all projects for a specific user
+                const links = [
+                    {
+                    href: "/api/users/req.params.userId/projects",
+                    rel: ":userId",
+                    type: "GET"
+                    },
+                    {
+                    href: "/api/users/req.params.userId/projects",
+                    rel: ":userId",
+                    type: "POST"
+                    }
+                ]
                     GET /api/users/:userid/projects?category=webdev //filter by category
+                    links: [
+                        {
+                        href: "api/users/req.params.userId/projects/req.query.category",
+                        rel: "projcategories",
+                        type: "GET"
+                        }
+                        {
+                        href: "api/users/req.params.userId/projects/req.query.category",
+                        rel: "projcategories",
+                        type: "POST"
+                        }
+                    ]
                 POST /api/users/:userid/projects //add project for specific user
+        
+        **EXCLUDE***
         GET /api/projects //get all projects (optional, for viewing all user projects)
             GET /api/projects/:projectid //get project details by project ID
             PATCH /api/projects/:projectid //update project by project ID
             DELETE /api/projects/:projectid //delete project by project ID
+        **EXCLUDE***
+        
         GET /api/projcategories //get list of project categories
+        const links = [
+        {
+          href: "/api/projcategories",
+          rel: ":projcategories",
+          type: "GET"
+        }
+      ]
