@@ -59,5 +59,22 @@ router.route('/:userId')
         res.json({user,links});
     } else {next(error(404,'User does not exist'))}
 })
+.patch((req,res,next) => {
+    let user = users.find((user,index)=>{
+        if(user.userId==req.params.userId){
+            for (const key in req.body) {
+                users[index][key] = req.body[key]; //update user object at index
+            }
+            return true;
+        }
+    })
+    if (user) {
+        res.json(user);
+    } else {next(error(404,'User does not exist'))}
+});
+// .delete((req,res,next) => {
+
+// });
+
 
 export default router;
