@@ -40,17 +40,17 @@ router.route('/')
 
 //@route: api/users/:userId
 //@desc: GET one user / PATCH details for one user / DELETE user
-router.route('/:userid')
-.get ((req,res) => {
-    let user = users.find((user)=>user.userId==req.params.userid)
+router.route('/:userId')
+.get ((req,res,next) => {
+    let user = users.find((user)=>user.userId==req.params.userId)
     const links = [
         {
-        href: "/api/users/req.params.userId",
+        href: `/api/users/${req.params.userId}`,
         rel: "update user details",
         type: "PATCH"
         },
         {
-        href: "/api/users/req.params.userId",
+        href: `/api/users/${req.params.userId}`,
         rel: ":delete user",
         type: "DELETE"
         }
