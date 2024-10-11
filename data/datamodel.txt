@@ -1,0 +1,15 @@
+GET /
+    GET /api
+        GET /api/users //get all users
+        POST /api/users //create new user (on signup)
+            GET /api/users/:userid //get user details
+            PATCH /api/users/:userid //change user details
+            DELETE /api/users/:userid //delete user
+                GET /api/users/:userid/projects //get all projects for a specific user
+                    GET /api/users/:userid/projects?category=webdev //filter by category
+                POST /api/users/:userid/projects //add project for specific user
+        GET /api/projects //get all projects (optional, for viewing all user projects)
+            GET /api/projects/:projectid //get project details by project ID
+            PATCH /api/projects/:projectid //update project by project ID
+            DELETE /api/projects/:projectid //delete project by project ID
+        GET /api/projcategories //get list of project categories
