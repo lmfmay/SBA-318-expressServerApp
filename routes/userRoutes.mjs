@@ -71,10 +71,18 @@ router.route('/:userId')
     if (user) {
         res.json(user);
     } else {next(error(404,'User does not exist'))}
+})
+.delete((req,res,next) => {
+    let user = users.find((user,index)=>{
+        if(user.userId==req.params.userId){
+            users.splice(index,1);
+            return true;
+        }
+    })
+    if (user) {
+        res.json(user);
+    } else {next(error(404,'User does not exist'))}
 });
-// .delete((req,res,next) => {
-
-// });
 
 
 export default router;
