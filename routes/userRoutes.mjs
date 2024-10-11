@@ -20,18 +20,20 @@ router.route('/')
           type: "POST"
         }
       ];
-    res.json({users,links})
+    res.json({users,links});
 })
 .post((req,res,next)=>{
     if (req.body.username && req.body.email){ //if userfields complete
-        if (users.find((user) => {user.email == req.body.email})){ //if user exists
+        if (users.find((user) => user.email == req.body.email)){ //if user exists
             next(error(409, 'User email already exists'));
         } else {
             let user = {
-                id: users[users.length - 1].userId + 1,
+                userId: users[users.length - 1].userId + 1,
                 username: req.body.username,
                 email: req.body.email,
             };
+            users.push(user);
+            res.json(users);
         }
     } else {next(error(400,'Insufficient Data'))} //if userfields incomplete
 })
