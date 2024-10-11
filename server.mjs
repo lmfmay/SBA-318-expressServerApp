@@ -19,7 +19,54 @@ app.use(bodyParser.json({ extended: true }));
 
 //Routes
 app.get('/',(req,res)=>{
-    res.send('This is working');
+    res.json({
+        links: [
+            {
+                href: "/api",
+                rel: "api",
+                type: "GET"
+            }
+        ]
+    }
+    );
+})
+
+app.get('/api',(req,res)=>{
+    res.json({
+        links: [
+            {
+                href: "/api/users",
+                rel: "users",
+                type: "GET"
+            },
+            {
+                href: "/api/users",
+                rel: "users",
+                type: "POST"
+            },
+            {
+                href: "/api/projects",
+                rel: "projects",
+                type: "GET"
+            },
+            {
+                href: "/api/projects",
+                rel: "projects",
+                type: "PATCH"
+            },
+            {
+                href: "/api/projects",
+                rel: "projects",
+                type: "DELETE"
+            },
+            {
+                href: "/api/projcategories",
+                rel: "projcategories",
+                type: "GET"
+            }
+        ]
+    }
+    );
 })
 
 app.use('/api/users',userRoutes);
