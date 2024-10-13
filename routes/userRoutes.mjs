@@ -2,6 +2,7 @@ import express from "express";
 import { users } from "../data/users.mjs";
 import { error } from "../utilities/error.mjs";
 import { projects } from "../data/projects.mjs";
+import { filterByCategory } from "../utilities/categoryFilter.mjs";
 
 let router = express.Router()
 
@@ -93,20 +94,31 @@ router.route('/:userId')
 //@route: api/users/:userId/projects
 //@desc: GET projects by one user / POST project for one user 
 router.route('/:userId/projects')
-.get ((req,res,next) => {
-    let userProjs = [];
+// .get ((req,res,next) => {
+//     let userProjs = [];
+//     if (!users.find((user)=>user.userId==req.params.userId)){
+//         return next(error(404,'User does not exist'));
+//     }
+//     projects.forEach(proj => {
+//         if (proj.userId == req.params.userId){
+//             userProjs.push(proj);
+//         }
+//     });
+//     if (userProjs.length > 0){
+//         res.json(userProjs);
+//     } else {next(error(404,'User does not have any projects'))}
+// })
+.get (filterByCategory,(req,res,next) => {
     if (!users.find((user)=>user.userId==req.params.userId)){
         return next(error(404,'User does not exist'));
     }
-    projects.forEach(proj => {
-        if (proj.userId == req.params.userId){
-            userProjs.push(proj);
-        }
-    });
+
+    let userProjs = req.filteredProjects;
     if (userProjs.length > 0){
         res.json(userProjs);
     } else {next(error(404,'User does not have any projects'))}
 })
+
 .post((req,res,next)=>{
     if (req.body.title && req.body.description && req.body.category){ //if projfields complete
         let proj = {

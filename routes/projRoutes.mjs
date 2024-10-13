@@ -62,4 +62,6 @@ router.route('/:id')
     } else {next(error(404,'Project does not exist'))}
 });
 
+//add route to get list of projects by categories
+
 export default router;
