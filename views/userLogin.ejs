@@ -11,8 +11,10 @@
         <h1>Sign Up</h1>
         <p>Enter a username and email to sign up.</p>
         <form id="signupForm" action="/api/users" method="post">
-            Username: <input type="text" name="username" id="username" required><br>
-            Email: <input type="text" name="email" id="email" required><br>
+            <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required><br>
+            <label for="email">Email:</label>
+                <input type="text" name="email" id="email" required><br>
             <button type="submit">Sign Up</button>
         </form>
     </header>

@@ -24,3 +24,5 @@ This project demonstrates my understanding of Node and Express and my capability
     - **git remote -v # confirm the changes**
 
 ## Acknowledgements
+- https://expressjs.com/en/guide/routing.html
+- https://ejs.co/#docs

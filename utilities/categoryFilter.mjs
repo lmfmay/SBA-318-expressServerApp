@@ -1,6 +1,6 @@
 import { projects } from "../data/projects.mjs";
 
-// Query middleware to filter by category
+// Query middleware to filter by category. Custom middleware #2
 export const filterByCategory = (req, res, next) => {
     // Extract category from query string (e.g., ?category=design)
     const category = req.query.category;

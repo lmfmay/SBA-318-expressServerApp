@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-// Logging middleware 
+// Logging middleware, custom middleware #1
 app.use((req, res, next) => {
     const time = new Date();
   
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
     );
     if (Object.keys(req.body).length > 0) {
       console.log("Containing the data:");
-      console.log(`${JSON.stringify(req.body)}`);//stringiy turns json object to string.
+      console.log(`${JSON.stringify(req.body)}`);
     }
     next();
   });

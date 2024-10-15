@@ -94,20 +94,7 @@ router.route('/:userId')
 //@route: api/users/:userId/projects
 //@desc: GET projects by one user / POST project for one user 
 router.route('/:userId/projects')
-// .get ((req,res,next) => {
-//     let userProjs = [];
-//     if (!users.find((user)=>user.userId==req.params.userId)){
-//         return next(error(404,'User does not exist'));
-//     }
-//     projects.forEach(proj => {
-//         if (proj.userId == req.params.userId){
-//             userProjs.push(proj);
-//         }
-//     });
-//     if (userProjs.length > 0){
-//         res.json(userProjs);
-//     } else {next(error(404,'User does not have any projects'))}
-// })
+// Query parameter for data filtering by project category
 .get (filterByCategory,(req,res,next) => {
     if (!users.find((user)=>user.userId==req.params.userId)){
         return next(error(404,'User does not exist'));
