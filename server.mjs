@@ -13,6 +13,12 @@ import bodyParser from "body-parser";
 const app = express();
 let PORT = 3000;
 
+//Static files to be used by template
+app.use(express.static('./styles'));
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
@@ -34,16 +40,17 @@ app.use((req, res, next) => {
 
 //Routes
 app.get('/',(req,res)=>{
-    res.json({
-        links: [
-            {
-                href: "/api",
-                rel: "api",
-                type: "GET"
-            }
-        ]
-    }
-    );
+    res.render('userLogin');
+    // res.json({
+    //     links: [
+    //         {
+    //             href: "/api",
+    //             rel: "api",
+    //             type: "GET"
+    //         }
+    //     ]
+    // }
+    // );
 })
 
 app.get('/api',(req,res)=>{
